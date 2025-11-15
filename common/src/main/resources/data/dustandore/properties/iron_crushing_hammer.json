@@ -1,0 +1,6 @@
+{
+  "type": "dustandore:righthand_properties",
+  "right_hand_item": "dustandore:iron_crushing_hammer",
+  "crush_power": 2,
+  "speed_base": 1.2
+}

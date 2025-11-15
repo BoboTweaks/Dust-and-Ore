@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "experience": 0.5,
+  "cookingtime": 75,
+  "ingredient": "dustandore:zinc_dust",
+  "result": {
+    "id": "create:zinc_ingot"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": ["create"]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "dustandore:custom/netherite_crushing_hammer_with_outline",
+  "textures": {
+    "0": "dustandore:block/netherite_crushing_hammer_texture",
+    "2": "dustandore:block/netherite_crushing_hammer_texture_e",
+    "3": "dustandore:block/netherite_outline_texture",
+    "particle": "dustandore:item/netherite_crushing_hammer_small_icon"
+  }
+}

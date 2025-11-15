@@ -1,0 +1,8 @@
+{
+  "parent": "dustandore:custom/copper_crushing_hammer_model",
+  "textures": {
+    "0": "dustandore:block/copper_crushing_hammer_texture",
+    "2": "dustandore:block/copper_crushing_hammer_texture_emissive",
+    "particle": "dustandore:item/copper_crushing_hammer_small_icon"
+  }
+}

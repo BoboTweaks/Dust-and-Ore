@@ -1,0 +1,9 @@
+{
+  "parent": "dustandore:custom/copper_crushing_hammer_with_outline",
+  "textures": {
+    "0": "dustandore:block/copper_crushing_hammer_texture",
+    "2": "dustandore:block/copper_crushing_hammer_texture_emissive",
+    "3": "dustandore:block/lightning_rod_outline_texture",
+    "particle": "dustandore:item/copper_crushing_hammer_small_icon"
+  }
+}

@@ -1,0 +1,69 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+}
+repositories {
+    maven { name = "BlameJared"; url = "https://maven.blamejared.com/" }
+    maven { name = "ModMaven";    url = "https://modmaven.dev" }
+}
+neoForge {
+    version = neoforge_version
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+    runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})"
+        }
+        client {
+            client()
+        }
+        data {
+            clientData()
+            
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+        server {
+            server()
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+dependencies {
+    implementation project(':common')
+    compileOnly "mezz.jei:jei-1.21.8-common-api:24.0.0.2"
+    compileOnly "mezz.jei:jei-1.21.8-neoforge-api:24.0.0.2"
+    runtimeOnly  "mezz.jei:jei-1.21.8-neoforge:24.0.0.2"
+}
+
+tasks.processResources {
+    from(project(':common').sourceSets.main.resources) {
+        include 'data/**'
+        include 'assets/**'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    
+    srcDir project(':common').sourceSets.main.resources
+    
+    exclude 'pack.mcmeta'
+}
+
+tasks.named('sourcesJar', Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier = 'sources'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

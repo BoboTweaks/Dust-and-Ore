@@ -1,0 +1,9 @@
+{
+  "parent": "dustandore:custom/diamond_crushing_hammer_with_outline",
+  "textures": {
+    "2": "dustandore:block/diamond_crushing_hammer_texture",
+    "3": "dustandore:block/diamond_crushing_hammer_texture_emissive",
+    "4": "dustandore:block/diamond_outline_texture",
+    "particle": "dustandore:item/diamond_crushing_hammer_small_icon"
+  }
+}

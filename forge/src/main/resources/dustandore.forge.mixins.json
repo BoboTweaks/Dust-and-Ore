@@ -1,0 +1,11 @@
+{
+  "minVersion": "0.8",
+  "package": "com.bobotweaks.dustandore.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "dustandore.refmap.json",
+  "mixins": ["MixinServerGamePacketListenerImpl"],
+  "client": ["MixinItemStackTooltip"],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

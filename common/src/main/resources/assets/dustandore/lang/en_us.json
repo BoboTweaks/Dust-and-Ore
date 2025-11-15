@@ -1,0 +1,46 @@
+{
+  "item.dustandore.iron_crushing_hammer": "Iron Crushing Hammer",
+  "item.dustandore.copper_crushing_hammer": "Copper Crushing Hammer",
+  "item.dustandore.netherite_crushing_hammer": "Netherite Crushing Hammer",
+  "item.dustandore.golden_crushing_hammer": "Golden Crushing Hammer",
+  "item.dustandore.diamond_crushing_hammer": "Diamond Crushing Hammer",
+
+  "item.dustandore.copper_dust": "Copper Dust",
+  "item.dustandore.iron_dust": "Iron Dust",
+  "item.dustandore.gold_dust": "Gold Dust",
+  "item.dustandore.zinc_dust": "Zinc Dust",
+
+  "tooltip.dustandore.raw_ore_desc": "Hold in off-hand with Crushing Hammer in main hand to crush into {dust_name}",
+  "tooltip.dustandore.hold_shift": "§6Hold Shift: §8view more content",
+
+  "enchantment.dustandore.ore_shatter": "Ore Shatter",
+  "enchantment.dustandore.ore_shatter.desc": "Crushes multiple ores at once.",
+
+  "jei.dustandore.category.crushing": "Crushing",
+  "advancements.crushing_hammers.title": "Crushing Hammers",
+  "advancements.crushing_hammers.descr": "Crush your ores",
+
+  "tooltip.dustandore.raw_ore_description": "Crush this {raw_ore_name} with a Crushing Hammer to get {dust_name}.",
+  "tooltip.dustandore.dusts_description": "Can be smelted in a Furnace or Blast Furnace to obtain a {ingot_name}.",
+
+  "tooltip.dustandore.hammer_crushing_power_text": "Crushing Power: ",
+  "tooltip.dustandore.hammer_crushing_power_text_color": "#A8A8A8",
+  "tooltip.dustandore.hammer_crushing_power_number_value_color": "#54FC54",
+  "tooltip.dustandore.hammer_speed_text": "Speed: ",
+  "tooltip.dustandore.hammer_speed_text_color": "#A8A8A8",
+  "tooltip.dustandore.hammer_speed_number_value_color": "#54FC54",
+  "tooltip.dustandore.hammer_hold_shift_text": "§6Hold Shift: §8view crushable materials",
+  "tooltip.dustandore.hammer_no_crushable_text": "§8(no crushables found)",
+  "tooltip.dustandore.hammer_crushable_materials_text": "§6Crushable Materials:",
+  "tooltip.dustandore.hammer_crushable_tooltip": "§8• {material} → §f{minimum}–{maximum} {output}",
+
+  "jei.dustandore.category.crushing": "Hammer Crushing",
+  "jei.dustandore.power": "Power: %d",
+  "jei.dustandore.chance": "Chance: %s",
+  "jei.dustandore.durability": "Durability: %d",
+  "jei.dustandore.fortune_affects": "Fortune enchantment affects output",
+  "jei.dustandore.usage1": "Hold hammer in main hand",
+  "jei.dustandore.usage2": "Item in offhand, then right-click",
+  "jei.dustandore.power.tooltip": "Minimum hammer power required",
+  "jei.dustandore.chance.tooltip": "Base chance without fortune"
+}

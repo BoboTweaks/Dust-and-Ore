@@ -1,0 +1,6 @@
+{
+  "type": "dustandore:righthand_properties",
+  "right_hand_item": "dustandore:netherite_crushing_hammer",
+  "crush_power": 5,
+  "speed_base": 2.5
+}

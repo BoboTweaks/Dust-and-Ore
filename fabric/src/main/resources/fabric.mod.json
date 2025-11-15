@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": ["${mod_author}"],
+  "contact": {
+    "homepage": "https://github.com/BoboTweaks/Dust-and-Ore",
+    "sources": "https://github.com/BoboTweaks/Dust-and-Ore"
+  },
+  "license": "${license}",
+  "icon": "assets/dustandore/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.bobotweaks.dustandore.FabricMod"],
+    "client": ["com.bobotweaks.dustandore.FabricClient"]
+  },
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=${java_version}"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

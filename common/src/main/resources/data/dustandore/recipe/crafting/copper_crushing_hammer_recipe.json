@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["aba", " c ", " a "],
+  "key": {
+    "a": "minecraft:copper_ingot",
+    "b": "minecraft:copper_block",
+    "c": "minecraft:lightning_rod"
+  },
+  "result": {
+    "id": "dustandore:copper_crushing_hammer",
+    "count": 1
+  }
+}

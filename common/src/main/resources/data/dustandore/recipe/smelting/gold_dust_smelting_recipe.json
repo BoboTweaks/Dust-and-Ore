@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "experience": 17,
+  "cookingtime": 100,
+  "ingredient": "dustandore:gold_dust",
+  "result": {
+    "id": "minecraft:gold_ingot"
+  }
+}

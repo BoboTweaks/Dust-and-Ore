@@ -1,0 +1,9 @@
+{
+  "parent": "dustandore:custom/gold_crushing_hammer_with_outline",
+  "textures": {
+    "0": "dustandore:block/gold_crushing_hammer_texture",
+    "1": "dustandore:block/gold_crushing_hammer_texture_emissive",
+    "2": "dustandore:block/gold_outline_texture",
+    "particle": "dustandore:item/gold_crushing_hammer_small_icon"
+  }
+}

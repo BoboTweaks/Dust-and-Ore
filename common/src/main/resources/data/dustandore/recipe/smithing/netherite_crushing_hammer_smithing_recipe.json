@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": "minecraft:netherite_upgrade_smithing_template",
+  "base": "dustandore:diamond_crushing_hammer",
+  "addition": "minecraft:netherite_ingot",
+  "result": {
+    "id": "dustandore:netherite_crushing_hammer"
+  }
+}

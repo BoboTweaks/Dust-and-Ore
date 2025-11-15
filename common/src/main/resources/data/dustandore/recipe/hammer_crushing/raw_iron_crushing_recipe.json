@@ -1,0 +1,15 @@
+{
+  "type": "dustandore:hammer_crush",
+  "left_hand_item": "minecraft:raw_iron",
+  "crush_power_required": 2,
+  "durability_cost": 5,
+  "cooldown_ticks": 30,
+  "crushing_sound": "",
+  "reward": {
+    "item": "dustandore:iron_dust",
+    "count_min": [1, 2, 2, 2],
+    "count_max": [2, 2, 3, 4],
+    "chance": [1.0, 1.0, 1.0, 1.0]
+  },
+  "required_mod": ""
+}

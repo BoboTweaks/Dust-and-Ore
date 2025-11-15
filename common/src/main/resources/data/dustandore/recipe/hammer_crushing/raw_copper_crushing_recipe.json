@@ -1,0 +1,15 @@
+{
+  "type": "dustandore:hammer_crush",
+  "left_hand_item": "minecraft:raw_copper",
+  "crush_power_required": 1,
+  "durability_cost": 3,
+  "cooldown_ticks": 20,
+  "crushing_sound": "",
+  "reward": {
+    "item": "dustandore:copper_dust",
+    "count_min": [1, 1, 2, 2],
+    "count_max": [2, 3, 3, 4],
+    "chance": [1.0, 1.0, 1.0, 1.0]
+  },
+  "required_mod": ""
+}

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "dustandore:copper_dust",
+    "dustandore:iron_dust",
+    "dustandore:gold_dust"
+  ]
+}

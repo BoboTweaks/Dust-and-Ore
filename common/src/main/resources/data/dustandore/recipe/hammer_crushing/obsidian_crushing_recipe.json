@@ -1,0 +1,15 @@
+{
+  "type": "dustandore:hammer_crush",
+  "left_hand_item": "minecraft:obsidian",
+  "crush_power_required": 4,
+  "durability_cost": 6,
+  "cooldown_ticks": 80,
+  "crushing_sound": "",
+  "reward": {
+    "item": "create:powdered_obsidian",
+    "count_min": [1, 1, 1, 1],
+    "count_max": [1, 2, 2, 3],
+    "chance": [0.1, 0.25, 0.5, 0.8]
+  },
+  "required_mod": "create"
+}

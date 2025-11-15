@@ -1,0 +1,6 @@
+{
+  "type": "dustandore:righthand_properties",
+  "right_hand_item": "dustandore:copper_crushing_hammer",
+  "crush_power": 1,
+  "speed_base": 1.0
+}

@@ -1,0 +1,15 @@
+{
+  "type": "dustandore:hammer_crush",
+  "left_hand_item": "create:raw_zinc",
+  "crush_power_required": 1,
+  "durability_cost": 3,
+  "cooldown_ticks": 20,
+  "crushing_sound": "block.deepslate.break",
+  "reward": {
+    "item": "dustandore:zinc_dust",
+    "count_min": [1, 1, 1, 2],
+    "count_max": [2, 3, 3, 4],
+    "chance": [1.0, 1.0, 1.0, 1.0]
+  },
+  "required_mod": "create"
+}

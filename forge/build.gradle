@@ -1,0 +1,140 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
+    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
+}
+base {
+    archivesName = "${mod_name}-forge-${minecraft_version}"
+}
+mixin {
+    config("${mod_id}.forge.mixins.json")
+}
+jar {
+    manifest {
+        attributes["MixinConfigs"] = "${mod_id}.forge.mixins.json"
+    }
+}
+
+tasks.withType(Jar).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+
+    copyIdeResources = true
+
+    reobf = false
+
+    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformer = at
+    }
+
+    runs {
+        client {
+            workingDirectory file('runs/client')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName 'Client'
+            mods {
+                modClientRun {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory file('runs/server')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName 'Server'
+            mods {
+                modServerRun {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory file('runs/data')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            taskName 'Data'
+            mods {
+                modDataRun {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir project(':common').file('src/main/java')
+        }
+        resources {
+            // pick up shared assets/datapack files
+            srcDir project(':common').file('src/main/resources')
+        }
+    }
+}
+
+tasks.processResources {
+    from(project(':common').sourceSets.main.resources) {
+        include 'data/**'
+        include 'assets/**'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
+    
+    compileOnly fg.deobf("net.minecraftforge:eventbus:7.0-beta.11")
+    annotationProcessor fg.deobf("net.minecraftforge:eventbus:7.0-beta.11")
+
+    implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            fg.component(it)
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    classpath += configurations.compileClasspath.filter { it.name.contains("eventbus") }
+
+    doFirst {
+        println("[forge] JavaCompile classpath entries (filtered):")
+        classpath.files.findAll { it.name.toLowerCase().contains('eventbus') || it.name.toLowerCase().contains('fmlcore') }.each {
+            println(" - ${it.absolutePath}")
+        }
+    }
+}
+
+def evJars = fileTree(dir: "${project.projectDir}/%CD%.gradle-user/caches/forge_gradle/deobf_dependencies", includes: ['**/eventbus-*.jar'])
+if (!evJars.isEmpty()) {
+    dependencies {
+        compileOnly evJars
+    }
+    tasks.withType(JavaCompile).configureEach {
+        classpath += evJars
+    }
+}
+
+sourceSets.each {
+    def dir = layout.buildDirectory.dir("sourcesSets/$it.name")
+    it.output.resourcesDir = dir
+    it.java.destinationDirectory = dir
+}

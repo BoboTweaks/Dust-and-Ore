@@ -1,0 +1,10 @@
+{
+  "dustandore": {
+    "version": "1.0.1",
+    "tooltip": {
+      "show_crushable_tooltip": true,
+      "show_raw_ore_tooltip": true,
+      "show_hammer_tooltip": true
+    }
+  }
+}
