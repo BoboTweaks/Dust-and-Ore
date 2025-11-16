@@ -2,7 +2,6 @@ plugins {
     id 'multiloader-loader'
     id 'fabric-loom'
 }
-
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered {
@@ -11,15 +10,6 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    implementation project(':common')
-}
-
-tasks.processResources {
-    from(project(':common').sourceSets.main.resources) {
-        include 'data/**'
-        include 'assets/**'
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 loom {

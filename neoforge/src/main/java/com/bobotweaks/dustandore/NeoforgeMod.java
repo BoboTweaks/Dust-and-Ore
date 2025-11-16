@@ -46,7 +46,7 @@ public class NeoforgeMod {
 
         modEventBus.addListener(NeoForgeTabs::onBuildCreativeTabs);
 
-        if (FMLEnvironment.dist == Dist.CLIENT) {
+        if (FMLEnvironment.getDist() == Dist.CLIENT) {
             NeoForge.EVENT_BUS.addListener(NeoforgeClient::onItemTooltip);
         }
 

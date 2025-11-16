@@ -1,65 +1,24 @@
-# Build outputs
-/build/
-/out/
-/bin/
-/classes/
-/dist/
-/target/
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-# Gradle
-/.gradle/
-/.gradle/
-/**/build/
-
-# Keep Gradle wrapper (needed to build on CI/other PCs)
-!gradle/wrapper/gradle-wrapper.jar
-!gradle/wrapper/gradle-wrapper.properties
-!gradlew
-!gradlew.bat
-
-# Forge/Minecraft dev
-/run/
-/logs/
-crash-reports/
-
-# IDEs
-/.idea/
+# idea
+out
+*.ipr
+*.iws
 *.iml
-/.project
-/.classpath
-/.settings/
-/.vscode/
+.idea/*
+!.idea/scopes
 
-# OS junk
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
+# gradle
+build
+.gradle
 
-# Binaries/archives
-*.jar
-*.war
-*.zip
-*.7z
-*.rar
-
-# Logs/temp
-*.log
-*.tmp
-*.bak
-*~
-
-# Secrets
-.env
-*.key
-*.pem
-*.jks
-*.keystore
-credentials*.json
-
-# Node/Python (if present)
-node_modules/
-.vscode/.ropeproject
-.venv/
-venv/
-__pycache__/
+# other
+eclipse
+run
+runs

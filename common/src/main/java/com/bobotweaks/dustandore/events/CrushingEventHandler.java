@@ -103,7 +103,7 @@ public class CrushingEventHandler {
                 height + fy * forward,
                 living.getZ() + fz * forward);
 
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             spawnParticlesClient(level, at, raw, 24);
         } else if (level instanceof ServerLevel sl) {
             spawnParticlesServer(sl, at, raw, 24);

@@ -18,9 +18,8 @@ public class FabricCrushingSync {
             "crushing_summary");
 
     public static void sendSummaryToPlayer(ServerPlayer player) {
-        MinecraftServer server = player.getServer();
-        if (server == null)
-            return;
+        net.minecraft.server.level.ServerLevel serverLevel = (net.minecraft.server.level.ServerLevel) player.level();
+        MinecraftServer server = serverLevel.getServer();
 
         List<ClientSummary> summaries = CrushingManager.buildServerClientSummary(server);
 

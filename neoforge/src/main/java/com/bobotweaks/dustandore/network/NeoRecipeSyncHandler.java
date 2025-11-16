@@ -34,8 +34,11 @@ public class NeoRecipeSyncHandler {
 
     private static void syncRecipesToPlayer(ServerPlayer player) {
         try {
-            List<CrushingManager.ClientSummary> summaries = CrushingManager
-                    .buildServerClientSummary(player.getServer());
+            net.minecraft.server.level.ServerLevel serverLevel = (net.minecraft.server.level.ServerLevel) player
+                    .level();
+            net.minecraft.server.MinecraftServer server = serverLevel.getServer();
+
+            List<CrushingManager.ClientSummary> summaries = CrushingManager.buildServerClientSummary(server);
             NeoNetworkHandler.sendToClient(player, summaries);
         } catch (Exception e) {
             e.printStackTrace();

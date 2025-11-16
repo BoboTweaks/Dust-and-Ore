@@ -15,23 +15,17 @@ jar {
     }
 }
 
-tasks.withType(Jar).configureEach {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
 minecraft {
     mappings channel: 'official', version: minecraft_version
 
-    copyIdeResources = true
+    copyIdeResources = true //Calls processResources when in dev
 
-    reobf = false
+    reobf = false // Forge 1.20.6+ uses official mappings at runtime, so we shouldn't reobf from official to SRG
 
+    // Automatically enable forge AccessTransformers if the file exists
+    // This location is hardcoded in Forge and can not be changed.
+    // https://github.com/MinecraftForge/MinecraftForge/blob/be1698bb1554f9c8fa2f58e32b9ab70bc4385e60/fmlloader/src/main/java/net/minecraftforge/fml/loading/moddiscovery/ModFile.java#L123
+    // Forge still uses SRG names during compile time, so we cannot use the common AT's
     def at = file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformer = at
@@ -74,33 +68,13 @@ minecraft {
     }
 }
 
-sourceSets {
-    main {
-        java {
-            srcDir project(':common').file('src/main/java')
-        }
-        resources {
-            // pick up shared assets/datapack files
-            srcDir project(':common').file('src/main/resources')
-        }
-    }
-}
-
-tasks.processResources {
-    from(project(':common').sourceSets.main.resources) {
-        include 'data/**'
-        include 'assets/**'
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
+sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-    
-    compileOnly fg.deobf("net.minecraftforge:eventbus:7.0-beta.11")
-    annotationProcessor fg.deobf("net.minecraftforge:eventbus:7.0-beta.11")
 
+    // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
 }
 
@@ -109,27 +83,6 @@ publishing {
         mavenJava(MavenPublication) {
             fg.component(it)
         }
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    classpath += configurations.compileClasspath.filter { it.name.contains("eventbus") }
-
-    doFirst {
-        println("[forge] JavaCompile classpath entries (filtered):")
-        classpath.files.findAll { it.name.toLowerCase().contains('eventbus') || it.name.toLowerCase().contains('fmlcore') }.each {
-            println(" - ${it.absolutePath}")
-        }
-    }
-}
-
-def evJars = fileTree(dir: "${project.projectDir}/%CD%.gradle-user/caches/forge_gradle/deobf_dependencies", includes: ['**/eventbus-*.jar'])
-if (!evJars.isEmpty()) {
-    dependencies {
-        compileOnly evJars
-    }
-    tasks.withType(JavaCompile).configureEach {
-        classpath += evJars
     }
 }
 

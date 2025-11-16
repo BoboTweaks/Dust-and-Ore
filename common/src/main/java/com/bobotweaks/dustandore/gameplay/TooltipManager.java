@@ -13,6 +13,7 @@ import java.util.function.Consumer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.Holder;
@@ -122,7 +123,7 @@ public class TooltipManager {
                         showCrushableEffective = propsForItem.showCrushablesOverride.booleanValue();
                 }
             }
-            if (net.minecraft.client.gui.screens.Screen.hasShiftDown()) {
+            if (isShiftDown()) {
                 if (!showCrushableEffective) {
                     if (!showHammerEffective)
                         return;
@@ -226,6 +227,25 @@ public class TooltipManager {
                 }
             }
         } catch (Throwable ignored) {
+        }
+    }
+
+    private static boolean isShiftDown() {
+        try {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc == null || mc.options == null || mc.getWindow() == null)
+                return false;
+
+            // Prefer the keybinding state
+            if (mc.options.keyShift.isDown())
+                return true;
+
+            // Fallback: check raw keyboard state for left/right Shift
+            var window = mc.getWindow();
+            return InputConstants.isKeyDown(window, InputConstants.KEY_LSHIFT)
+                    || InputConstants.isKeyDown(window, InputConstants.KEY_RSHIFT);
+        } catch (Throwable ignored) {
+            return false;
         }
     }
 
@@ -555,7 +575,7 @@ public class TooltipManager {
                 return; // not a crushable raw ore -> no hint, no tooltip
 
             // If Shift is NOT held, only show the hint and stop
-            if (!net.minecraft.client.gui.screens.Screen.hasShiftDown()) {
+            if (!isShiftDown()) {
                 String hint = getLocalizedValue("tooltip.dustandore.raw_ore_hold_shift_text");
                 if (hint == null || hint.isEmpty())
                     hint = getLocalizedValue("tooltip.dustandore.hold_shift");

@@ -2,12 +2,10 @@ plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
 }
-repositories {
-    maven { name = "BlameJared"; url = "https://maven.blamejared.com/" }
-    maven { name = "ModMaven";    url = "https://modmaven.dev" }
-}
+
 neoForge {
     version = neoforge_version
+    // Automatically enable neoforge AccessTransformers if the file exists
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
@@ -19,14 +17,16 @@ neoForge {
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
-            ideName = "NeoForge ${it.name.capitalize()} (${project.path})"
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
         }
         client {
             client()
         }
         data {
             clientData()
-            
+
+            // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
         server {
@@ -41,9 +41,9 @@ neoForge {
 }
 dependencies {
     implementation project(':common')
-    compileOnly "mezz.jei:jei-1.21.8-common-api:24.0.0.2"
-    compileOnly "mezz.jei:jei-1.21.8-neoforge-api:24.0.0.2"
-    runtimeOnly  "mezz.jei:jei-1.21.8-neoforge:24.0.0.2"
+    compileOnly "mezz.jei:jei-1.21.9-common-api:25.0.0.2"
+    compileOnly "mezz.jei:jei-1.21.9-neoforge-api:25.0.0.2"
+    runtimeOnly  "mezz.jei:jei-1.21.9-neoforge:25.0.0.2"
 }
 
 tasks.processResources {
